@@ -1,0 +1,6 @@
+framework module SSELib {
+  umbrella header "SSELib.h"
+
+  export *
+  module * { export * }
+}
