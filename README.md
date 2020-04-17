@@ -61,7 +61,7 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
 -(bool) reConnect_sse:(NSString*)did uid:(NSString*)uid ;
 ~~~
 
-~~ objc
+~~~ objc
 /**
      * 发送消息给其他设备
      * @param destDid 发送到的设备ｉd
