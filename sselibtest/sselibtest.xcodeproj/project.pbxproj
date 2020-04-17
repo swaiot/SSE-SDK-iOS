@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D13399D24406A1400996739 /* SSELib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D13399C24406A0700996739 /* SSELib.framework */; };
-		4D13399E24406A1400996739 /* SSELib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D13399C24406A0700996739 /* SSELib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D2FF2392440545E003AEC37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FF2382440545E003AEC37 /* AppDelegate.m */; };
 		4D2FF23C2440545E003AEC37 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FF23B2440545E003AEC37 /* SceneDelegate.m */; };
 		4D2FF23F2440545E003AEC37 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FF23E2440545E003AEC37 /* ViewController.m */; };
@@ -16,6 +14,8 @@
 		4D2FF2442440545F003AEC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D2FF2432440545F003AEC37 /* Assets.xcassets */; };
 		4D2FF2472440545F003AEC37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D2FF2452440545F003AEC37 /* LaunchScreen.storyboard */; };
 		4D2FF24A2440545F003AEC37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FF2492440545F003AEC37 /* main.m */; };
+		4D49CAB824499CA4004203EA /* SSELib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D49CAB724499CA4004203EA /* SSELib.framework */; };
+		4D49CAB924499CA4004203EA /* SSELib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D49CAB724499CA4004203EA /* SSELib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D7CC1C42440654A0001864A /* 22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4D7CC1C32440654A0001864A /* 22.jpg */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4D13399E24406A1400996739 /* SSELib.framework in Embed Frameworks */,
+				4D49CAB924499CA4004203EA /* SSELib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,7 +34,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4D13399C24406A0700996739 /* SSELib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSELib.framework; path = "../Library/Developer/Xcode/DerivedData/SSELib-ctpatmuhivjqzrgfjnvpvogyvtib/Build/Products/Release-iphoneos/SSELib.framework"; sourceTree = "<group>"; };
 		4D2FF2342440545E003AEC37 /* sselibtest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sselibtest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D2FF2372440545E003AEC37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D2FF2382440545E003AEC37 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		4D2FF2462440545F003AEC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D2FF2482440545F003AEC37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D2FF2492440545F003AEC37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4D49CAB724499CA4004203EA /* SSELib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SSELib.framework; sourceTree = "<group>"; };
 		4D7CC1C32440654A0001864A /* 22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 22.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D13399D24406A1400996739 /* SSELib.framework in Frameworks */,
+				4D49CAB824499CA4004203EA /* SSELib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 		4D2FF250244054AA003AEC37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4D13399C24406A0700996739 /* SSELib.framework */,
+				4D49CAB724499CA4004203EA /* SSELib.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

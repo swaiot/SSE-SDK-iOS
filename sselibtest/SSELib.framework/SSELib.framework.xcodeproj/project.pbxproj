@@ -7,42 +7,42 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		4D2FF2622440554F003AEC37 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
-		4D2FF2632440554F003AEC37 /* sse.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sse.bundle; sourceTree = "<group>"; };
-		4D2FF2642440554F003AEC37 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		4D2FF2652440554F003AEC37 /* parse-sse.fl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "parse-sse.fl"; sourceTree = "<group>"; };
-		4D2FF2662440554F003AEC37 /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Headers; sourceTree = "<group>"; };
-		4D2FF2672440554F003AEC37 /* SSELib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = SSELib; sourceTree = "<group>"; };
-		4D2FF2682440554F003AEC37 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
-		4D2FF2692440554F003AEC37 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Modules; sourceTree = "<group>"; };
-		4D2FF26A2440554F003AEC37 /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
-		4D2FF26B2440554F003AEC37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
+		4D13398F24406A0600996739 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		4D13399024406A0600996739 /* sse.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sse.bundle; sourceTree = "<group>"; };
+		4D13399124406A0600996739 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		4D13399224406A0600996739 /* parse-sse.fl */ = {isa = PBXFileReference; lastKnownFileType = text; path = "parse-sse.fl"; sourceTree = "<group>"; };
+		4D13399324406A0600996739 /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Headers; sourceTree = "<group>"; };
+		4D13399424406A0600996739 /* SSELib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = SSELib; sourceTree = "<group>"; };
+		4D13399524406A0600996739 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Frameworks; sourceTree = "<group>"; };
+		4D13399624406A0600996739 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Modules; sourceTree = "<group>"; };
+		4D13399724406A0600996739 /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		4D13399824406A0600996739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		4D2FF25C2440554F003AEC37 = {
+		4D13398924406A0600996739 = {
 			isa = PBXGroup;
 			children = (
-				4D2FF2622440554F003AEC37 /* .DS_Store */,
-				4D2FF2632440554F003AEC37 /* sse.bundle */,
-				4D2FF2642440554F003AEC37 /* Makefile.am */,
-				4D2FF2652440554F003AEC37 /* parse-sse.fl */,
-				4D2FF2662440554F003AEC37 /* Headers */,
-				4D2FF2672440554F003AEC37 /* SSELib */,
-				4D2FF2682440554F003AEC37 /* Frameworks */,
-				4D2FF2692440554F003AEC37 /* Modules */,
-				4D2FF26A2440554F003AEC37 /* Makefile.in */,
-				4D2FF26B2440554F003AEC37 /* Info.plist */,
+				4D13398F24406A0600996739 /* .DS_Store */,
+				4D13399024406A0600996739 /* sse.bundle */,
+				4D13399124406A0600996739 /* Makefile.am */,
+				4D13399224406A0600996739 /* parse-sse.fl */,
+				4D13399324406A0600996739 /* Headers */,
+				4D13399424406A0600996739 /* SSELib */,
+				4D13399524406A0600996739 /* Frameworks */,
+				4D13399624406A0600996739 /* Modules */,
+				4D13399724406A0600996739 /* Makefile.in */,
+				4D13399824406A0600996739 /* Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		4D2FF2612440554F003AEC37 /* SSELib.framework */ = {
+		4D13398E24406A0600996739 /* SSELib.framework */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 4D2FF26C2440554F003AEC37 /* Build configuration list for PBXLegacyTarget "SSELib.framework" */;
+			buildConfigurationList = 4D13399924406A0600996739 /* Build configuration list for PBXLegacyTarget "SSELib.framework" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
@@ -56,11 +56,11 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXProject section */
-		4D2FF25D2440554F003AEC37 /* Project object */ = {
+		4D13398A24406A0600996739 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 			};
-			buildConfigurationList = 4D2FF2602440554F003AEC37 /* Build configuration list for PBXProject "SSELib.framework" */;
+			buildConfigurationList = 4D13398D24406A0600996739 /* Build configuration list for PBXProject "SSELib.framework" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -68,17 +68,17 @@
 				en,
 				Base,
 			);
-			mainGroup = 4D2FF25C2440554F003AEC37;
+			mainGroup = 4D13398924406A0600996739;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D2FF2612440554F003AEC37 /* SSELib.framework */,
+				4D13398E24406A0600996739 /* SSELib.framework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin XCBuildConfiguration section */
-		4D2FF25E2440554F003AEC37 /* Debug */ = {
+		4D13398B24406A0600996739 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -90,7 +90,7 @@
 			};
 			name = Debug;
 		};
-		4D2FF25F2440554F003AEC37 /* Release */ = {
+		4D13398C24406A0600996739 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -101,7 +101,7 @@
 			};
 			name = Release;
 		};
-		4D2FF26D2440554F003AEC37 /* Debug */ = {
+		4D13399A24406A0600996739 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -116,7 +116,7 @@
 			};
 			name = Debug;
 		};
-		4D2FF26E2440554F003AEC37 /* Release */ = {
+		4D13399B24406A0600996739 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -131,25 +131,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4D2FF2602440554F003AEC37 /* Build configuration list for PBXProject "SSELib.framework" */ = {
+		4D13398D24406A0600996739 /* Build configuration list for PBXProject "SSELib.framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D2FF25E2440554F003AEC37 /* Debug */,
-				4D2FF25F2440554F003AEC37 /* Release */,
+				4D13398B24406A0600996739 /* Debug */,
+				4D13398C24406A0600996739 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D2FF26C2440554F003AEC37 /* Build configuration list for PBXLegacyTarget "SSELib.framework" */ = {
+		4D13399924406A0600996739 /* Build configuration list for PBXLegacyTarget "SSELib.framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4D2FF26D2440554F003AEC37 /* Debug */,
-				4D2FF26E2440554F003AEC37 /* Release */,
+				4D13399A24406A0600996739 /* Debug */,
+				4D13399B24406A0600996739 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 4D2FF25D2440554F003AEC37 /* Project object */;
+	rootObject = 4D13398A24406A0600996739 /* Project object */;
 }

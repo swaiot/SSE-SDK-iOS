@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BGSafeMutableArray;
 @interface SSEManager : NSObject
-@property(nonatomic, retain) id<SSELibDelegate> delegate;
+@property(nonatomic, weak) id<SSELibDelegate> delegate;
 @property(nonatomic,retain) NSString* DeviceId;
 @property(nonatomic,retain) NSString* UserId;
 @property(nonatomic,strong) NSThread* connectThread;
@@ -69,8 +69,6 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  connect_sse 连上iot的sse平台
  连接SSE，程序初始化完成之后，连入到iot的sse平台
- @param did 设备的全网唯一ID（手机设备请使用imei等唯一码），
- @param uid 可以传空 
  */
 -(bool) connect_sse:(NSString*)did uid:(NSString*)uid ;
 
