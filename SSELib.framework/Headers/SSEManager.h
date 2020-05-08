@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, SSEErrorEnum){
 };
 
 typedef NS_ENUM(NSInteger, SSESendResultEnum){
+    TARGETKNOWERROR = -1,
     TARGETOFFLINEERROR = 0,
     TARGETONLINESUCCESS =1,
 };
