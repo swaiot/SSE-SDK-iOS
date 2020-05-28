@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import <SSELib/SSEEnum.h>
 @interface ViewController ()
 
 @end
@@ -22,14 +22,14 @@
 /**
  调用了[[SSEManager sharedInstance]syncFileToCloud:]发发之后的异步回调
  发送文件到bos存储服务，发送过程是异步的，发送成功/失败都会回调到函数。
- @param sendResult 文件上传结果
+ @param sendResule 文件上传结果
  SENDFILE_ERROR = -1, //发送失败了
  SENDFILE_ONPROGRESS = 0, //发送的进度回调
  SENDFILE_FINISHED=1,//发送完成了
  @param fileKey 文件上传标识
  */
--(void) onSendFileToCloud:(SendFileResultEnum)sendResult fileKey:(NSString*)fileKey destDId:(NSString*) destDId progress:(NSNumber*)progress error:(NSError*)err{
-    NSLog(@"onSendFileToCloud errorCode: %ld filekey: %@", sendResult, fileKey);
+-(void) onSendFileToCloud:(SendFileResult)sendResule fileKey:(NSString*)fileKey destDId:(NSString*) destDId progress:(NSNumber*)progress error:(NSError*)err{
+    NSLog(@"onSendFileToCloud errorCode: %ld filekey: %@", sendResule, fileKey);
 
 }
 
@@ -44,7 +44,7 @@
  @param savedUrl 文件下载到本地的路径地址
  @param err 文件下载错误信息
  */
--(void) onReceivedFileFromCloud:(ReceivedFileResultEnum)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError*)err{
+-(void) onReceivedFileFromCloud:(ReceivedFileResult)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError*)err{
     NSLog(@"onSendFileToCloud errorCode: %ld filekey: %@ savedpath: %@ progress: %ld err=%@ ", receivedResult, fileKey,savedUrl,[progress integerValue],[err description]);
 
 }
@@ -54,7 +54,7 @@
       从swaiot开放平台获得的APPEKY和APPSALT，其中APPKEY填到info.plist当中增加：SSEAPPKEY并填入值
             此处填入APPSALT
  */
--(NSString*) appSalt {
+-(NSString*) saltOfSSETunnel{
     return @"";
 }
 
@@ -68,7 +68,7 @@
  @param errMsg 库错误消息
  
  */
--(void) onSSEError:(SSEErrorEnum)errorCode errString:(NSString*) errMsg {
+-(void) onSSEError:(SSEConnectError)errorCode errString:(NSString*) errMsg {
     NSLog(@"onSSEError errorCode: %ld errString: %@", errorCode, errMsg);
 }
 
@@ -99,7 +99,7 @@
  @param eventName 发送的消息名称
  @param message 发送的消息内容
  */
--(void) onSendSSEResult:(SSESendResultEnum) resultCode destStr:(NSString*)dest msgId:(NSString*)messageId msgName:(NSString*) eventName msg:(NSString*)message{
+-(void) onSendSSEResult:(SSESendResult) resultCode destStr:(NSString*)dest msgId:(NSString*)messageId msgName:(NSString*) eventName msg:(NSString*)message{
     NSLog(@"onSendSSEResult resultCode: %ld dest: %@ messageId: %@ eventName: %@ message: %@", resultCode, dest, messageId, eventName, message);
 }
 

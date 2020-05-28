@@ -17,4 +17,5 @@ FOUNDATION_EXPORT const unsigned char SSELibVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <SSELib/PublicHeader.h>
 
 #import <SSELib/SSEManager.h>
+#import <SSELib/SSEEnum.h>
 

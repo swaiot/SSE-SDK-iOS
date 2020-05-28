@@ -7,61 +7,63 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef NS_ENUM(NSInteger, SSEErrorEnum){
-    ConnectHostFail =0,
-   SSEDisconnect =1,
-   SSESendError = 2,
-   ConnectBosHostFail = 3,
-};
-
-typedef NS_ENUM(NSInteger, SSESendResultEnum){
-    TARGETKNOWERROR = -1,
-    TARGETOFFLINEERROR = 0,
-    TARGETONLINESUCCESS =1,
-};
-
-typedef NS_ENUM(NSInteger, SendFileResultEnum){
-    SENDFILE_ERROR = -1,
-    SENDFILE_ONPROGRESS = 0,
-    SENDFILE_FINISHED=1,
-};
-
-typedef NS_ENUM(NSInteger, ReceivedFileResultEnum){
-    RECEIVEFILE_ERROR=-1,
-    RECEIVEFILE_ONPROGRESS = 0,
-    RECEIVEFILE_FINISHED=1,
-};
-
+#import "SSEEnum.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SSELibDelegate <NSObject>
-@required//遵守协议必须实现的方法
--(NSString*) appSalt;
--(void) onSSEError:(SSEErrorEnum)errorCode errString:(NSString*) errMsg;
--(void) onSSETunnelStarted;
--(void) onReceiveSSEMessage:(NSString*)msgId msgName:(NSString*) eventName msg:(NSString*)message;
--(void) onSendSSEResult:(SSESendResultEnum) resultCode destStr:(NSString*)dest msgId:(NSString*)messageId msgName:(NSString*) eventName msg:(NSString*)message;
--(void) onSendFileToCloud:(SendFileResultEnum)sendResule fileKey:(NSString*)fileKey destDId:(NSString*) destDId progress:(NSNumber*)progress error:(NSError*)err;
--(void) onReceivedFileFromCloud:(ReceivedFileResultEnum)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError*)err;
+@required
+
+/// 获取 SSE  Salt
+-(NSString*) saltOfSSETunnel;
 
 @optional
+/// SSE 通道连接成功
+-(void) onSSETunnelStarted;
+
+/// SSE通道连接失败
+/// @param errorCode 错误码
+/// @param errMsg 错误信息
+-(void) onSSEError:(SSEConnectError)errorCode errString:(NSString*) errMsg;
+
+
+/// 接收到SSE通道的信息
+/// @param msgId 消息id
+/// @param eventName 消息事件
+/// @param message 消息内容
+-(void) onReceiveSSEMessage:(NSString*)msgId msgName:(NSString*) eventName msg:(NSString*)message;
+
+/// 发送数据到SSE通道的回调
+/// @param resultCode 发送结果的状态
+/// @param dest 发送目标
+/// @param messageId 消息id
+/// @param eventName 事件
+/// @param message 内容
+-(void) onSendSSEResult:(SSESendResult) resultCode destStr:(NSString*)dest msgId:(NSString*)messageId msgName:(NSString*) eventName msg:(NSString*)message;
+
+
+/// 发送文件到SSE通道的回调
+/// @param sendResule 状态
+/// @param fileKey 文件标识
+/// @param destDId 目标
+/// @param progress 进度
+/// @param err 错误
+-(void) onSendFileToCloud:(SendFileResult)sendResule fileKey:(NSString*)fileKey destDId:(NSString*) destDId progress:(NSNumber*)progress error:(NSError*)err;
+
+
+/// 接收文件回调
+/// @param receivedResult 状态
+/// @param fileKey 文件标识
+/// @param savedUrl 保存到本地的缓存路径
+/// @param progress 进度
+/// @param err 错误
+-(void) onReceivedFileFromCloud:(ReceivedFileResult)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError*)err;
 
 @end
 
 
-@class BGSafeMutableArray;
 @interface SSEManager : NSObject
-@property(nonatomic, weak) id<SSELibDelegate> delegate;
-@property(nonatomic,retain) NSString* DeviceId;
-@property(nonatomic,retain) NSString* UserId;
-@property(nonatomic,strong) NSThread* connectThread;
 
-@property(strong,nonatomic) BGSafeMutableArray* sendQueue;           //仓库
-@property(strong,nonatomic) dispatch_semaphore_t mutex;         //访问仓库（临界区）的互斥访问信号量
-@property(strong,nonatomic) dispatch_semaphore_t comsumer_sem;      //生产者-是否生产对象的标记  消费者是否消费仓库对象的标记 使用信
-@property(strong,nonatomic) dispatch_semaphore_t product_sem;      //生产者-是否生产对象的标记  消费者是否消费仓库对象的标记 使用信
-@property(strong,nonatomic)dispatch_queue_t producerQueue;
-@property(strong,nonatomic) dispatch_queue_t consumerQueue;
+@property(nonatomic, weak) id<SSELibDelegate> delegate;
 
 /**
  单例
@@ -75,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  重连，比如uid切换
+ 重连会触发SSEDisconnect类型错误回调，不要在这个回调里面继续调用此方法
  */
 -(bool) reConnect_sse:(NSString*)did uid:(NSString*)uid ;
 
@@ -98,37 +101,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(bool) isSSEStarted;
 
-/**
- SSE线程回调
- */
--(void) onSSEError:(NSDictionary*) callBackDic;
--(void) onSSETunnelStarted;
--(void) onReceiveSSEMessage:(NSDictionary*) callBackDic;
--(void) onSendSSEResult:(NSDictionary*) callBackDic;
--(void) onBosTunnelConfiged:(NSDictionary*) callBackDic;
--(void) refreshBosToken;
--(void) onSendFileProgress:(SendFileResultEnum)sendResule fileKey:(NSString*)fileKey destDid:(NSString*) destDid progress:(NSNumber*)progress error:(NSError* _Nullable)err;
--(void) onReceivedFileProgress:(ReceivedFileResultEnum)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError* _Nullable)err;
-
 @end
 
 
 
-@interface ConnectArgs : NSObject<NSCopying,NSMutableCopying>
-@property(nonatomic,retain)NSString *appKey;
-@property(nonatomic,retain)NSString *appSalt;
-@property(nonatomic,retain)NSString *deviceId;
-@property(nonatomic,retain)NSString *userId;
-@end
-
-@interface SendArgs : NSObject
-@property(nonatomic,retain)NSString *hostAddr;
-@property(nonatomic,retain)NSString *destDid;
-@property(nonatomic,retain)NSString *msgId;
-@property(nonatomic,retain)NSString *msgName;
-@property(nonatomic,retain)NSString *msg;
-@property(nonatomic,assign)Boolean exitFlag;
-@end
 
 NS_ASSUME_NONNULL_END
 
