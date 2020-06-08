@@ -64,16 +64,37 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SSEManager : NSObject
 
 @property(nonatomic, weak) id<SSELibDelegate> delegate;
-
+@property(nonatomic, retain) NSString* autoGenUUID;
 /**
  单例
  */
 + (instancetype)sharedInstance;
+
+/**
+  SDK自动生成uuid作为唯一标识，接入SSE平台，
+  该接口主要用于第三方开放平台下载的APP，uid会保存在本地
+ */
+-(bool) connect_sse;
+
+/**
+   如果是自动生成的UUID，重连逻辑请调用该接口
+ */
+-(bool) reConnect_sse;
+
+/**
+    获得SDK生成的唯一的设备ID
+ */
+-(NSString*) readUniqueID;
+
+/**
+    注册用户拥有的IOT消息的监听
+ */
+-(void) registerListenUserIotMessages:(NSString*)accessToken userID:(NSString*)uid;
 /*
  connect_sse 连上iot的sse平台
  连接SSE，程序初始化完成之后，连入到iot的sse平台
  */
--(bool) connect_sse:(NSString*)did uid:(NSString*)uid ;
+-(bool) connect_sse:(NSString*)did uid:(NSString*)uid;
 
 /**
  重连，比如uid切换
