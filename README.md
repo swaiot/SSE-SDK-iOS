@@ -23,7 +23,7 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
       从swaiot开放平台获得的APPEKY和APPSALT，其中APPKEY填到info.plist当中增加：SSEAPPKEY并填入值
             此处填入APPSALT
  */
--(NSString*) appSalt {
+-(NSString*) saltOfSSETunnel{
     return @"";
 }
 ~~~
@@ -38,6 +38,35 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
  单例
  */
 + (instancetype)sharedInstance;
+~~~
+
+~~~ objc
+/**
+  SDK自动生成uuid作为唯一标识，接入SSE平台，
+  该接口主要用于第三方开放平台下载的APP，uid会保存在本地
+ */
+-(bool) connect_sse;
+~~~
+
+~~~ objc
+/**
+   如果是自动生成的UUID，重连逻辑请调用该接口
+ */
+-(bool) reConnect_sse;
+~~~
+
+~~~ objc
+/**
+    获得SDK生成的唯一的设备ID
+ */
+-(NSString*) readUniqueID;
+~~~
+
+~~~ objc
+/**
+    注册用户拥有的IOT消息的监听
+ */
+-(void) registerListenUserIotMessages:(NSString*)accessToken userID:(NSString*)uid;
 ~~~
 
 ~~~ objc
@@ -106,13 +135,13 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
 /**
  调用了[[SSEManager sharedInstance]syncFileToCloud:]发发之后的异步回调
  发送文件到bos存储服务，发送过程是异步的，发送成功/失败都会回调到函数。
- @param sendResult 文件上传结果
+ @param sendResule 文件上传结果
  SENDFILE_ERROR = -1, //发送失败了
  SENDFILE_ONPROGRESS = 0, //发送的进度回调
  SENDFILE_FINISHED=1,//发送完成了
  @param fileKey 文件上传标识
  */
--(void) onSendFileToCloud:(SendFileResultEnum)sendResult fileKey:(NSString*)fileKey destDId:(NSString*) destDId progress:(NSNumber*)progress error:(NSError*)err;
+-(void) onSendFileToCloud:(SendFileResult)sendResule fileKey:(NSString*)fileKey destDId:(NSString*) destDId progress:(NSNumber*)progress error:(NSError*)err
 ~~~
 
 ~~~ objc
@@ -127,7 +156,7 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
  @param savedUrl 文件下载到本地的路径地址
  @param err 文件下载错误信息
  */
--(void) onReceivedFileFromCloud:(ReceivedFileResultEnum)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError*)err;
+-(void) onReceivedFileFromCloud:(ReceivedFileResult)receivedResult fileKey:(NSString*)fileKey savedPath:(NSString*)savedUrl progress:(NSNumber*)progress error:(NSError*)err;
 ~~~
 
 ~~~ objc
@@ -136,7 +165,7 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
       从swaiot开放平台获得的APPEKY和APPSALT，其中APPKEY填到info.plist当中增加：SSEAPPKEY并填入值
             此处填入APPSALT
  */
--(NSString*) appSalt ;
+-(NSString*) saltOfSSETunnel;
 ~~~
 
 ~~~ objc
@@ -148,15 +177,16 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
  SSESendError = 2, //发送失败错误
  ConnectBosHostFail = 3, //获取bos地址错误
  @param errMsg 库错误消息
+ 
  */
--(void) onSSEError:(SSEErrorEnum)errorCode errString:(NSString*) errMsg ;
+-(void) onSSEError:(SSEConnectError)errorCode errString:(NSString*) errMsg ;
 ~~~
 
 ~~~ objc
 /**
  SSE连接成功之后的回调
  */
--(void) onSSETunnelStarted ;
+-(void) onSSETunnelStarted  ;
 ~~~
 
 ~~~ objc
@@ -180,5 +210,5 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
  @param eventName 发送的消息名称
  @param message 发送的消息内容
  */
--(void) onSendSSEResult:(SSESendResultEnum) resultCode destStr:(NSString*)dest msgId:(NSString*)messageId msgName:(NSString*) eventName msg:(NSString*)message;
+-(void) onSendSSEResult:(SSESendResult) resultCode destStr:(NSString*)dest msgId:(NSString*)messageId msgName:(NSString*) eventName msg:(NSString*)message;
 ~~~
