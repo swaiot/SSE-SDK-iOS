@@ -63,31 +63,72 @@ key: SSEAPPKEY  value: swaiot开放平台分配到的APPKEY
 ~~~
 
 ~~~ objc
-/**
-    注册用户拥有的IOT消息的监听
+/*
+ * 连接SSE平台
+ * 标准接口，需要根据业务需要传递唯一的ID，为防止冲突，可以增加业务前缀
+ * @param did： 业务唯一ID
+ * @return true： 成功 false： 失败
  */
--(void) registerListenUserIotMessages:(NSString*)accessToken userID:(NSString*)uid;
+-(bool)connect_sse:(NSString*)did
+~~~
+
+~~~ objc
+/**
+ *  重连SSE平台，
+ *  在设备发生网络状态变化，或者设备唯一ID发生变化的时候，可以调用
+ * @param did ：业务接入SSE的唯一ID
+ * @return true：成功  false： 失败
+ */
+-(bool) reConnect_sse:(NSString*)did 
 ~~~
 
 ~~~ objc
 /*
-   * 连接SSE平台
-     * @param did 链接到IOTSSE平台的did 必须唯一，本机唯一did
-     * @param uid 链接到IOTSSE平台的uid，swaiot平台用户唯一uid,可以为空
-     * @return ture 成功,false 失败
+ * 以智慧屏的方式接入SSE
+ * 智慧屏接入方式相比connect_sse接口，云端会增加智慧屏的好友设备列表推送在离线的设备状态消息，以及智慧屏相关业务的其他消息推送
+ * 该方法用户智慧屏的相关业务，主要在酷开系统8.x以及有ScreenID关系的设备上，其他第三方请勿使用
+ * @param screenID:智慧屏唯一ID
+ * @return true：成功 false：失败
  */
--(bool) connect_sse:(NSString*)did uid:(NSString*)uid ;
+-(bool) connect_sse_ASSmartScreen:(NSString*) screenID
+
 ~~~
 
 ~~~ objc
-/**
-     * 重新连接SSE平台
-     * 在设备上的uid发生变化的时候，请调用该方法
-     * @param did　必传，用于唯一标识设备消息接收，全网唯一ID
-     * @param uid　可以为空，如果不为空，则发送方发送的消息给设备需要did&uid的完整组合才能确保接收到消息
-     * @return true:重连正常 false：重连不正常
+/*
+ * 重新连接SSE平台
+ * 在设备上，如果网络状态发生变化，或者ScreenID发生了变化，需要重新调用接口
+ * @param screenID：智慧屏ID
+ * @return true：成功 false：失败
  */
--(bool) reConnect_sse:(NSString*)did uid:(NSString*)uid ;
+-(bool) reConnect_sse_ASSmartScreen:(NSString*) screenID
+~~~
+
+~~~ objc
+/*
+* 以Swaiot-SSE的方式接入SSE
+* 该接口相比于connect_sse的接口，云端会增加用户账号下其他IOT设备状态变化的推送
+* @param did: 设备作为iot设备的唯一id
+* @param accessToken：从酷开账号中心获得的用户授权令牌
+* @param useId：从酷开账号中心获得的用户uid
+* @return true：成功 false：失败
+*/
+-(bool) connect_sse_ASIotDevice:(NSString*)did accessToken:(NSString*)userAk userId:(NSString*)uid;
+
+~~~
+
+~~~ objc
+/*
+ * 以Swaiot-IOT设备的方式重新接入SSE平台
+ * 在设备上，如果网络状态发生变化，或者ScreenID发生了变化，需要重新调用接口
+ * @param did:设备唯一id
+ * @param accessToken：从酷开账号中心获得的用户授权令牌
+ * @param useId：从酷开账号中心获得的用户uid
+ * @return true：成功 false：失败
+ *
+ */
+-(bool) reconnect_see_ASIotDevice:(NSString*)did accessToken:(NSString*)userAk userId:(NSString*)uid;
+
 ~~~
 
 ~~~ objc
