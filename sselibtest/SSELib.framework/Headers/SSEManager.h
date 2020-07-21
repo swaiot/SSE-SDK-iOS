@@ -86,22 +86,70 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(NSString*) readUniqueID;
 
-/**
-    注册用户拥有的IOT消息的监听
- */
--(void) registerListenUserIotMessages:(NSString*)accessToken userID:(NSString*)uid;
+///**
+//    注册用户拥有的IOT消息的监听
+// */
+//-(void) registerListenUserIotMessages:(NSString*)accessToken userID:(NSString*)uid;
+
+///*
+// connect_sse 连上iot的sse平台
+// 连接SSE，程序初始化完成之后，连入到iot的sse平台
+// */
+//-(bool) connect_sse:(NSString*)did uid:(NSString*)uid;
+
 /*
- connect_sse 连上iot的sse平台
- 连接SSE，程序初始化完成之后，连入到iot的sse平台
+ * 连接SSE平台
+ * 标准接口，需要根据业务需要传递唯一的ID，为防止冲突，可以增加业务前缀
+ * @param did： 业务唯一ID
+ * @return true： 成功 false： 失败
  */
--(bool) connect_sse:(NSString*)did uid:(NSString*)uid;
+-(bool)connect_sse:(NSString*)did;
 
 /**
- 重连，比如uid切换
- 重连会触发SSEDisconnect类型错误回调，不要在这个回调里面继续调用此方法
+ *  重连SSE平台，
+ *  在设备发生网络状态变化，或者设备唯一ID发生变化的时候，可以调用
+ * @param did ：业务接入SSE的唯一ID
+ * @return true：成功  false： 失败
  */
--(bool) reConnect_sse:(NSString*)did uid:(NSString*)uid ;
+-(bool) reConnect_sse:(NSString*)did ;
 
+/*
+ * 以智慧屏的方式接入SSE
+ * 智慧屏接入方式相比connect_sse接口，云端会增加智慧屏的好友设备列表推送在离线的设备状态消息，以及智慧屏相关业务的其他消息推送
+ * 该方法用户智慧屏的相关业务，主要在酷开系统8.x以及有ScreenID关系的设备上，其他第三方请勿使用
+ * @param screenID:智慧屏唯一ID
+ * @return true：成功 false：失败
+ */
+-(bool) connect_sse_ASSmartScreen:(NSString*) screenID;
+
+/*
+ * 重新连接SSE平台
+ * 在设备上，如果网络状态发生变化，或者ScreenID发生了变化，需要重新调用接口
+ * @param screenID：智慧屏ID
+ * @return true：成功 false：失败
+ */
+-(bool) reConnect_sse_ASSmartScreen:(NSString*) screenID;
+
+/*
+* 以Swaiot-SSE的方式接入SSE
+* 该接口相比于connect_sse的接口，云端会增加用户账号下其他IOT设备状态变化的推送
+* @param did: 设备作为iot设备的唯一id
+* @param accessToken：从酷开账号中心获得的用户授权令牌
+* @param useId：从酷开账号中心获得的用户uid
+* @return true：成功 false：失败
+*/
+-(bool) connect_sse_ASIotDevice:(NSString*)did accessToken:(NSString*)userAk userId:(NSString*)uid;
+
+/*
+ * 以Swaiot-IOT设备的方式重新接入SSE平台
+ * 在设备上，如果网络状态发生变化，或者ScreenID发生了变化，需要重新调用接口
+ * @param did:设备唯一id
+ * @param accessToken：从酷开账号中心获得的用户授权令牌
+ * @param useId：从酷开账号中心获得的用户uid
+ * @return true：成功 false：失败
+ *
+ */
+-(bool) reconnect_see_ASIotDevice:(NSString*)did accessToken:(NSString*)userAk userId:(NSString*)uid;
 /**
  发送消息给到设备
  */

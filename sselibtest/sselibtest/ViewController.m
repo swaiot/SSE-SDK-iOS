@@ -105,7 +105,7 @@
 
 - (IBAction)do_connect:(id)sender {
     [SSEManager sharedInstance].delegate = self;
-       [[SSEManager sharedInstance] connect_sse:@"unique_device_id" uid:@""];
+       [[SSEManager sharedInstance] connect_sse_ASSmartScreen:@"unique_device_id"];
 }
 - (IBAction)do_send:(id)sender {
     if ([[SSEManager sharedInstance] isSSEStarted]) {
@@ -113,7 +113,7 @@
        }
 }
 - (IBAction)do_reconnect:(id)sender {
-    [[SSEManager sharedInstance] reConnect_sse:@"unique_device_id" uid:@""];
+    [[SSEManager sharedInstance] reConnect_sse_ASSmartScreen:@"unique_device_id"];
 }
 - (IBAction)do_sendfile:(id)sender {
     NSBundle *bundle = [NSBundle mainBundle];
